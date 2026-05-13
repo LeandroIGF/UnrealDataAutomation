@@ -12,12 +12,17 @@ public class UnrealDataAutomation : ModuleRules
 
 		PrivateDependencyModuleNames.AddRange(new string[] { "UnrealEd" });
 
-		// Uncomment if you are using Slate UI
-		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
-		
-		// Uncomment if you are using online features
-		// PrivateDependencyModuleNames.Add("OnlineSubsystem");
+        if (Target.Configuration == UnrealTargetConfiguration.Test && Target.Name.Contains("Test"))
+        {
+            PublicDefinitions.Add("ALLOW_CONSOLE_IN_SHIPPING=1");
+        }
 
-		// To include OnlineSubsystemSteam, add it to the plugins section in your uproject file with the Enabled attribute set to true
-	}
+        // Uncomment if you are using Slate UI
+        // PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
+
+        // Uncomment if you are using online features
+        // PrivateDependencyModuleNames.Add("OnlineSubsystem");
+
+        // To include OnlineSubsystemSteam, add it to the plugins section in your uproject file with the Enabled attribute set to true
+    }
 }
